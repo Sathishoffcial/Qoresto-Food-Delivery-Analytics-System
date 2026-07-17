@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>QORESTO | Admin Login</title>
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050B16;
+    font-family:'Segoe UI',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    color:white;
+}
+
+.login-container{
+
+    width:420px;
+
+    background:linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border:1px solid rgba(77,223,255,.18);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    box-shadow:
+    0 0 35px rgba(77,223,255,.15);
+}
+
+h1{
+    text-align:center;
+    color:#4ddfff;
+    margin-bottom:30px;
+    font-size:34px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#cbd5e1;
+    margin-bottom:25px;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#cfefff;
+}
+
+input{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(77,223,255,.2);
+
+    background:#111827;
+
+    color:white;
+
+    font-size:15px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#4ddfff;
+    box-shadow:
+    0 0 15px rgba(77,223,255,.25);
+}
+
+.login-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:linear-gradient(
+    135deg,
+    #4ddfff,
+    #00d4ff);
+
+    color:black;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.login-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 25px rgba(77,223,255,.35);
+}
+
+.home-btn{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:20px;
+
+    text-decoration:none;
+
+    color:#4ddfff;
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+
+<h1>🔐 Admin Login</h1>
+
+<p class="subtitle">
+    QORESTO Management Portal
+</p>
+
+<form method="POST">
+
+    <div class="input-group">
+        <label>Username</label>
+        <input
+            type="text"
+            name="username"
+            placeholder="Enter Username"
+            required>
+    </div>
+
+    <div class="input-group">
+        <label>Password</label>
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            required>
+    </div>
+
+    <button
+        type="submit"
+        class="login-btn">
+        Login
+    </button>
+
+</form>
+
+<a href="/home" class="home-btn">
+    ← Back to Home
+</a>
+
+
+</div>
+
+</body>
+</html>

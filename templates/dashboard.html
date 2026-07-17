@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Qoresto Analytics Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        <h2>QORESTO</h2>
+    </div>
+
+    <div class="nav-links">
+        <a href="/home">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/analytics">Analytics</a>
+        <a href="/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</nav>
+
+<section class="dashboard-hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="dashboard-content">
+
+        <h1>QORESTO ANALYTICS</h1>
+
+        <p>
+            Real-Time Restaurant Performance,
+            Revenue Tracking & Business Intelligence
+        </p>
+
+    </div>
+
+</section>
+
+<!-- KPI SECTION -->
+
+<section class="kpi-section">
+
+<div class="cards">
+
+    <div class="card">
+        <span>🍽️</span>
+        <h3>Total Restaurants</h3>
+        <h2>{{ total_restaurants }}</h2>
+    </div>
+
+    <div class="card">
+        <span>📦</span>
+        <h3>Total Orders</h3>
+        <h2>{{ total_orders }}</h2>
+    </div>
+
+    <div class="card">
+        <span>✅</span>
+        <h3>Delivered Orders</h3>
+        <h2>{{ delivered_orders }}</h2>
+    </div>
+
+    <div class="card">
+        <span>❌</span>
+        <h3>Cancelled Orders</h3>
+        <h2>{{ cancelled_orders }}</h2>
+    </div>
+
+    <div class="card">
+        <span>⏳</span>
+        <h3>Pending Orders</h3>
+        <h2>{{ pending_orders }}</h2>
+    </div>
+
+    <div class="card">
+        <span>👥</span>
+        <h3>Total Users</h3>
+        <h2>{{ total_users }}</h2>
+    </div>
+
+    <div class="card revenue">
+        <span>💰</span>
+        <h3>Total Revenue</h3>
+        <h2>₹{{ revenue }}</h2>
+    </div>
+
+    <div class="card revenue">
+        <span>📈</span>
+        <h3>Today's Revenue</h3>
+        <h2>₹{{ today_revenue }}</h2>
+    </div>
+
+    <div class="card">
+        <span>💳</span>
+        <h3>Total Payments</h3>
+        <h2>{{ total_payments }}</h2>
+    </div>
+
+    <div class="card">
+        <span>⭐</span>
+        <h3>Total Reviews</h3>
+        <h2>{{ total_reviews }}</h2>
+    </div>
+
+    <div class="card">
+        <span>❤️</span>
+        <h3>Total Favorites</h3>
+        <h2>{{ total_favorites }}</h2>
+    </div>
+
+    <div class="card">
+        <span>🍕</span>
+        <h3>Total Menu Items</h3>
+        <h2>{{ total_menu_items }}</h2>
+    </div>
+
+    <div class="card">
+        <span>📊</span>
+        <h3>Average Order Value</h3>
+        <h2>₹{{ avg_order_value }}</h2>
+    </div>
+
+    <div class="card">
+        <span>⭐</span>
+        <h3>Average Rating</h3>
+        <h2>{{ avg_rating }}</h2>
+    </div>
+
+    <div class="card">
+        <span>🏆</span>
+        <h3>Highest Rating</h3>
+        <h2>{{ highest_rating }}</h2>
+    </div>
+
+    <div class="card">
+        <span>🌎</span>
+        <h3>Total Cities</h3>
+        <h2>{{ total_cities }}</h2>
+    </div>
+
+</div>
+
+</section>
+<section class="charts-section">
+
+<div class="chart-grid">
+
+    <div class="chart-box">
+        <h2>Restaurants By Cuisine</h2>
+        <canvas id="cuisineChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h2>Cuisine Distribution</h2>
+        <canvas id="pieChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h2>Monthly Revenue</h2>
+        <canvas id="revenueChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h2>Top Selling Food Items</h2>
+        <canvas id="topItemsChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h2>Order Status</h2>
+        <canvas id="statusChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h2>Top Restaurants</h2>
+        <canvas id="restaurantChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h2>Top Customers</h2>
+        <canvas id="customerChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h2>Payment Status</h2>
+        <canvas id="paymentChart"></canvas>
+    </div>
+
+</div>
+
+</section>
+
+<section class="report-section">
+
+<h2>Recent Orders</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+    <th>Order ID</th>
+    <th>Status</th>
+    <th>Amount</th>
+    <th>Date</th>
+</tr>
+
+{% for order in recent_orders %}
+
+<tr>
+    <td>{{ order.order_id }}</td>
+    <td>{{ order.order_status }}</td>
+    <td>₹{{ order.total_amount }}</td>
+    <td>{{ order.order_date }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</section>
+
+<section class="action-section">
+
+<a href="/export_excel" class="btn">
+    Export Excel
+</a>
+
+<a href="/export_pdf" class="btn">
+    Export PDF
+</a>
+
+<a href="/restaurant_report" class="btn">
+    Restaurant Report
+</a>
+
+<a href="/customer_report" class="btn">
+    Customer Report
+</a>
+
+<a href="/home" class="btn">
+    Back Home
+</a>
+
+</section>
+
+<footer>
+
+<h3>QORESTO Analytics Platform</h3>
+
+<p>
+Business Intelligence • Revenue Analytics • Restaurant Management
+</p>
+
+</footer>
+
+<!-- KEEP YOUR EXISTING CHART.JS SCRIPT HERE -->
+<script>
+const labels = {{ labels|tojson }};
+const values = {{ values|tojson }};
+
+const itemLabels = {{ item_labels|tojson }};
+const itemValues = {{ item_values|tojson }};
+
+const statusLabels = {{ status_labels|tojson }};
+const statusValues = {{ status_values|tojson }};
+
+const months = {{ months|tojson }};
+const revenues = {{ revenues|tojson }};
+
+const restaurantLabels = {{ restaurant_labels|tojson }};
+const restaurantValues = {{ restaurant_values|tojson }};
+
+const customerLabels = {{ customer_labels|tojson }};
+const customerValues = {{ customer_values|tojson }};
+
+const paymentLabels = {{ payment_labels|tojson }};
+const paymentValues = {{ payment_values|tojson }};
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+
+
+</body>
+</html>
+
+
+

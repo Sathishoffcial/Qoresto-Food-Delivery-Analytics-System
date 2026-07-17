@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Cart</title>
+
+   <style>
+
+body{
+    background:#050B16;
+    color:white;
+    font-family:'Segoe UI',sans-serif;
+    margin:0;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    color:#4ddfff;
+    font-size:42px;
+    margin-bottom:40px;
+}
+
+/* Cart Container */
+
+.cart-container{
+    background:#0f172a;
+    border:1px solid rgba(77,223,255,.2);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 0 20px rgba(77,223,255,.1);
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+}
+
+th{
+    background:#4ddfff;
+    color:black;
+    padding:15px;
+    font-size:15px;
+}
+
+td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+tr:hover{
+    background:#152238;
+}
+
+/* Amount Section */
+
+.total-box{
+    margin-top:25px;
+    text-align:right;
+}
+
+.total-box h2{
+    color:#4ddfff;
+    font-size:30px;
+}
+
+/* Buttons */
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    padding:12px 24px;
+    border-radius:10px;
+    font-weight:600;
+    margin:8px;
+    transition:.3s;
+}
+
+.shop{
+    background:#2196F3;
+    color:white;
+}
+
+.checkout{
+    background:#00C853;
+    color:white;
+}
+
+.delete{
+    background:#ff5252;
+    color:white;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 15px rgba(77,223,255,.3);
+}
+
+.button-area{
+    margin-top:25px;
+    text-align:center;
+}
+
+/* Empty Cart */
+
+.empty-cart{
+    text-align:center;
+    padding:60px;
+    background:#0f172a;
+    border-radius:20px;
+    border:1px solid rgba(77,223,255,.2);
+}
+
+.empty-cart h2{
+    color:#4ddfff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🛒 My Cart</h1>
+
+{% if cart_items %}
+
+<div class="cart-container">
+
+<table>
+
+<tr>
+    <th>Item</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Total</th>
+    <th>Action</th>
+</tr>
+
+{% for item in cart_items %}
+
+<tr>
+
+    <td>{{ item.item_name }}</td>
+
+    <td>₹{{ item.price }}</td>
+
+    <td>{{ item.quantity }}</td>
+
+    <td>₹{{ item.total }}</td>
+
+    <td>
+        <a href="/remove_cart/{{ item.cart_id }}"
+           class="btn delete">
+            Remove
+        </a>
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<div class="total-box">
+    <h2>₹{{ total_amount }}</h2>
+    <p>Total Cart Value</p>
+</div>
+
+<div class="button-area">
+
+    <a href="/menu" class="btn shop">
+        Continue Shopping
+    </a>
+
+    <a href="/checkout" class="btn checkout">
+        Checkout
+    </a>
+
+</div>
+
+</div>
+
+{% else %}
+
+<div class="empty-cart">
+
+    <h2>Your Cart Is Empty</h2>
+
+    <p>Add delicious food items to begin ordering.</p>
+
+    <br>
+
+    <a href="/restaurants" class="btn shop">
+        Explore Restaurants
+    </a>
+
+</div>
+
+{% endif %}
+
+</body>
+</html>

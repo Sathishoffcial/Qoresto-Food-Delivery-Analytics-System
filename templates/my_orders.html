@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>QORESTO | My Orders</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050B16;
+    color:white;
+    font-family:'Segoe UI',sans-serif;
+    padding:30px;
+}
+
+body::before{
+    content:'';
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    background:rgba(77,223,255,.08);
+
+    border-radius:50%;
+
+    top:-150px;
+    right:-150px;
+
+    filter:blur(120px);
+
+    z-index:-1;
+}
+
+h1{
+    text-align:center;
+
+    color:#4ddfff;
+
+    font-size:48px;
+
+    margin-bottom:40px;
+
+    text-shadow:
+    0 0 25px rgba(77,223,255,.6);
+}
+
+.order-card{
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    box-shadow:
+    0 0 15px rgba(77,223,255,.08);
+
+    transition:.4s;
+}
+
+.order-card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#4ddfff;
+
+    box-shadow:
+    0 0 30px rgba(77,223,255,.25);
+}
+
+.order-card h3{
+
+    color:#4ddfff;
+
+    margin-bottom:15px;
+}
+
+.order-card p{
+
+    color:#d1d5db;
+
+    margin:10px 0;
+}
+
+.status-badge{
+
+    background:#00e676;
+
+    color:black;
+
+    padding:6px 12px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+}
+
+.btn{
+
+    display:inline-block;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    margin-right:10px;
+
+    margin-top:12px;
+
+    transition:.3s;
+}
+
+.track{
+    background:#4ddfff;
+    color:black;
+}
+
+.invoice{
+    background:#00d4ff;
+    color:black;
+}
+
+.reorder{
+    background:#00e676;
+    color:black;
+}
+
+.cancel{
+    background:#ff5252;
+    color:white;
+}
+
+.home{
+    background:#4ddfff;
+    color:black;
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.35);
+}
+
+.empty-box{
+
+    width:500px;
+
+    margin:50px auto;
+
+    text-align:center;
+
+    background:#0F172A;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(77,223,255,.15);
+}
+
+.empty-box h2{
+    color:#4ddfff;
+    margin-bottom:10px;
+}
+
+.bottom{
+    text-align:center;
+    margin-top:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>📦 My Orders</h1>
+
+{% if orders %}
+
+
+{% for order in orders %}
+
+<div class="order-card">
+
+    <h3>Order #{{ order.order_id }}</h3>
+
+    <p>
+        <strong>Order Date:</strong>
+        {{ order.order_date }}
+    </p>
+
+    <p>
+        <strong>Total Amount:</strong>
+        ₹{{ order.total_amount }}
+    </p>
+
+    {% if order.discount_amount %}
+    <p>
+        <strong>Discount:</strong>
+        ₹{{ order.discount_amount }}
+    </p>
+    {% endif %}
+
+    <p>
+        <strong>Status:</strong>
+        <span class="status-badge">
+            {{ order.order_status }}
+        </span>
+    </p>
+
+    <a href="/track_order/{{ order.order_id }}"
+       class="btn track">
+       Track Order
+    </a>
+
+    <a href="/invoice/{{ order.order_id }}"
+       class="btn invoice">
+       Download Invoice
+    </a>
+
+    <a href="/reorder/{{ order.order_id }}"
+       class="btn reorder">
+       Reorder
+    </a>
+
+    <a href="/cancel_order/{{ order.order_id }}"
+       class="btn cancel">
+       Cancel Order
+    </a>
+    <a href="/rate_order/{{ order.order_id }}"
+   class="btn rate">
+   ⭐ Rate Order
+</a>
+
+</div>
+
+{% endfor %}
+
+
+{% else %}
+
+<div class="empty-box">
+
+
+<h2>No Orders Yet</h2>
+
+<p>
+    Start ordering your favorite food.
+</p>
+
+</div>
+
+{% endif %}
+
+<div class="bottom">
+
+<a href="/menu" class="btn home">
+    🍽️ Order More Food
+</a>
+
+<a href="/home" class="btn home">
+    🏠 Back Home
+</a>
+    
+
+</div>
+
+</body>
+</html>

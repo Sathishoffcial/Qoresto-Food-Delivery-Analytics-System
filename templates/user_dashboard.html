@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QORESTO | User Dashboard</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#050B16;
+    color:white;
+    min-height:100vh;
+}
+
+/* Header */
+
+.header{
+
+    background:#08111f;
+
+    padding:30px;
+
+    text-align:center;
+
+    border-bottom:1px solid rgba(77,223,255,.15);
+}
+
+.header h1{
+    color:#4ddfff;
+    font-size:42px;
+}
+
+.header p{
+    color:#94A3B8;
+    margin-top:10px;
+}
+
+/* Container */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px;
+}
+
+/* Welcome Card */
+
+.welcome-card{
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    box-shadow:
+    0 0 25px rgba(77,223,255,.1);
+}
+
+.welcome-card h2{
+    color:#4ddfff;
+    font-size:34px;
+}
+
+.welcome-card p{
+    color:#CBD5E1;
+    margin-top:10px;
+}
+
+/* Dashboard Cards */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+}
+
+.card{
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    transition:.3s;
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.08);
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#4ddfff;
+
+    box-shadow:
+    0 0 25px rgba(77,223,255,.25);
+}
+
+.card i{
+
+    font-size:40px;
+
+    color:#4ddfff;
+
+    margin-bottom:15px;
+}
+
+.card h3{
+
+    margin-bottom:15px;
+
+    color:white;
+}
+
+.card a{
+
+    display:inline-block;
+
+    padding:12px 22px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #4ddfff,
+    #00d4ff);
+
+    color:black;
+
+    text-decoration:none;
+
+    border-radius:12px;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.card a:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.35);
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    padding:30px;
+    color:#94A3B8;
+    margin-top:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+    <h1>QORESTO USER DASHBOARD</h1>
+
+    <p>Restaurant Ordering & Analytics Platform</p>
+
+</div>
+
+<div class="container">
+
+<div class="welcome-card">
+
+    <h2>Welcome, {{ session['name'] }} 👋</h2>
+
+    <p>
+        Manage Orders, Favorites, Profile and Explore Restaurants
+    </p>
+
+</div>
+
+<div class="dashboard-grid">
+
+<div class="card">
+    <i class="fa-solid fa-utensils"></i>
+    <h3>Restaurants</h3>
+    <a href="/restaurants">View</a>
+</div>
+
+<div class="card">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <h3>Cart</h3>
+    <a href="/cart">View</a>
+</div>
+
+<div class="card">
+    <i class="fa-solid fa-box"></i>
+    <h3>My Orders</h3>
+    <a href="/my-orders">View</a>
+</div>
+
+<div class="card">
+    <i class="fa-solid fa-heart"></i>
+    <h3>Favorites</h3>
+    <a href="/favorites">View</a>
+</div>
+
+<div class="card">
+    <i class="fa-solid fa-user"></i>
+    <h3>Profile</h3>
+    <a href="/profile">View</a>
+</div>
+
+<div class="card">
+    <i class="fa-solid fa-chart-line"></i>
+    <h3>Analytics</h3>
+    <a href="/analytics">View</a>
+</div>
+
+<div class="card">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <h3>Logout</h3>
+    <a href="/logout">Logout</a>
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 QORESTO Analytics Platform
+</div>
+
+</body>
+</html>
+

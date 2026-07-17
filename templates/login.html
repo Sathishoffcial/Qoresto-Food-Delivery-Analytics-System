@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QORESTO | Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #050B16,
+    #0F172A);
+
+    font-family:'Segoe UI',sans-serif;
+
+    overflow:hidden;
+}
+
+/* Background Glow */
+
+body::before{
+
+    content:'';
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    background:rgba(77,223,255,.08);
+
+    border-radius:50%;
+
+    top:-150px;
+    left:-150px;
+
+    filter:blur(120px);
+}
+
+body::after{
+
+    content:'';
+
+    position:absolute;
+
+    width:400px;
+    height:400px;
+
+    background:rgba(77,223,255,.08);
+
+    border-radius:50%;
+
+    bottom:-150px;
+    right:-150px;
+
+    filter:blur(120px);
+}
+
+.login-box{
+
+    position:relative;
+    z-index:1;
+
+    width:420px;
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border:1px solid rgba(77,223,255,.18);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    box-shadow:
+    0 0 30px rgba(77,223,255,.12);
+
+    backdrop-filter:blur(15px);
+}
+
+.logo{
+
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.logo h1{
+
+    color:#4ddfff;
+
+    font-size:42px;
+
+    letter-spacing:2px;
+}
+
+.logo p{
+
+    color:#94A3B8;
+
+    font-size:14px;
+}
+
+h2{
+
+    text-align:center;
+
+    color:white;
+
+    margin-bottom:25px;
+}
+
+.input-group{
+
+    margin-bottom:18px;
+}
+
+.input-group label{
+
+    display:block;
+
+    color:#cbd5e1;
+
+    margin-bottom:8px;
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    background:#111827;
+
+    color:white;
+
+    font-size:15px;
+}
+
+.input-group input:focus{
+
+    outline:none;
+
+    border-color:#4ddfff;
+
+    box-shadow:
+    0 0 15px rgba(77,223,255,.2);
+}
+
+.login-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #4ddfff,
+    #00d4ff);
+
+    color:black;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.login-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 25px rgba(77,223,255,.35);
+}
+
+.register-link{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#94A3B8;
+}
+
+.register-link a{
+
+    color:#4ddfff;
+
+    text-decoration:none;
+
+    font-weight:700;
+}
+
+.register-link a:hover{
+
+    color:white;
+}
+
+.footer-text{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    color:#64748B;
+
+    font-size:12px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="logo">
+
+        <h1>QORESTO</h1>
+
+        <p>Restaurant Analytics Platform</p>
+
+    </div>
+
+    <h2>Welcome Back</h2>
+
+    <form method="POST">
+
+        <div class="input-group">
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required>
+
+        </div>
+
+        <button type="submit"
+                class="login-btn">
+
+            Login
+
+        </button>
+
+    </form>
+
+    <div class="register-link">
+
+        Don't have an account?
+
+        <a href="/register">
+            Create Account
+        </a>
+
+    </div>
+
+    <div class="footer-text">
+
+        © 2026 QORESTO Analytics Platform
+
+    </div>
+
+</div>
+
+</body>
+</html>
+

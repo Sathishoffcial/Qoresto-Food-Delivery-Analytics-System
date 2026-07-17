@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>QORESTO | Customer Reviews</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#050B16;
+
+    color:white;
+
+    font-family:'Segoe UI',sans-serif;
+
+    min-height:100vh;
+}
+
+.header{
+
+    text-align:center;
+
+    padding:40px;
+
+    border-bottom:1px solid rgba(77,223,255,.15);
+
+    background:#08111f;
+}
+
+.header h1{
+
+    color:#4ddfff;
+
+    font-size:42px;
+}
+
+.header p{
+
+    color:#94A3B8;
+
+    margin-top:10px;
+}
+
+.container{
+
+    padding:40px;
+}
+
+.review-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 0 30px rgba(77,223,255,.08);
+}
+
+.review-table th{
+
+    background:#4ddfff;
+
+    color:black;
+
+    padding:16px;
+
+    font-size:15px;
+}
+
+.review-table td{
+
+    padding:15px;
+
+    text-align:center;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.08);
+
+    color:#e2e8f0;
+}
+
+.review-table tr:hover{
+
+    background:
+    rgba(77,223,255,.08);
+}
+
+.rating{
+
+    color:#FFD700;
+
+    font-size:18px;
+
+    font-weight:bold;
+}
+
+.review-text{
+
+    max-width:350px;
+
+    margin:auto;
+
+    color:#cbd5e1;
+}
+
+.actions{
+
+    text-align:center;
+
+    margin-top:30px;
+}
+
+.btn{
+
+    display:inline-block;
+
+    padding:14px 28px;
+
+    background:#4ddfff;
+
+    color:black;
+
+    text-decoration:none;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.btn:hover{
+
+    background:white;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.3);
+}
+
+.empty{
+
+    text-align:center;
+
+    padding:50px;
+
+    color:#94A3B8;
+
+    font-size:20px;
+}
+
+.footer{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#94A3B8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>⭐ Customer Reviews</h1>
+
+<p>
+Monitor customer feedback and ratings
+across all restaurants.
+</p>
+
+</div>
+
+<div class="container">
+
+{% if reviews %}
+
+<table class="review-table">
+
+<tr>
+    <th>Review ID</th>
+    <th>Customer</th>
+    <th>Restaurant</th>
+    <th>Rating</th>
+    <th>Review</th>
+</tr>
+
+{% for review in reviews %}
+
+<tr>
+
+    <td>{{ review.review_id }}</td>
+
+    <td>{{ review.name }}</td>
+
+    <td>{{ review.restaurant_name }}</td>
+
+    <td class="rating">
+        ⭐ {{ review.rating }}
+    </td>
+
+    <td class="review-text">
+        {{ review.review_text }}
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% else %}
+
+<div class="empty">
+
+No Reviews Available
+
+</div>
+
+{% endif %}
+
+<div class="actions">
+
+<a href="/home" class="btn">
+🏠 Back Home
+</a>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+© 2026 QORESTO Review Management
+
+</div>
+
+</body>
+</html>
+

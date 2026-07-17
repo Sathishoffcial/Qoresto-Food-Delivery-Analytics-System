@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QORESTO | SQL Queries Documentation</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#050B16;
+    color:white;
+    padding:40px;
+}
+
+/* Header */
+
+.header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.header h1{
+    color:#4ddfff;
+    font-size:45px;
+    text-shadow:0 0 20px rgba(77,223,255,.4);
+}
+
+.header p{
+    color:#94A3B8;
+    margin-top:10px;
+}
+
+/* Card */
+
+.query-card{
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    margin-bottom:30px;
+
+    border:1px solid rgba(77,223,255,.18);
+
+    box-shadow:
+    0 0 25px rgba(77,223,255,.08);
+}
+
+.query-card h2{
+    color:#4ddfff;
+    margin-bottom:15px;
+}
+
+/* SQL Block */
+
+pre{
+
+    background:#0b1220;
+
+    color:#dbeafe;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    overflow:auto;
+
+    border-left:4px solid #4ddfff;
+
+    line-height:1.7;
+}
+
+/* Summary Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-bottom:30px;
+}
+
+th{
+    background:#4ddfff;
+    color:black;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+tr:hover{
+    background:#162033;
+}
+
+/* Buttons */
+
+.btn-section{
+    text-align:center;
+    margin-top:30px;
+}
+
+.btn{
+
+    display:inline-block;
+
+    padding:14px 25px;
+
+    margin:10px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    background:
+    linear-gradient(
+    135deg,
+    #4ddfff,
+    #00d4ff);
+
+    color:black;
+
+    transition:.3s;
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.35);
+}
+
+.footer{
+    text-align:center;
+    margin-top:30px;
+    color:#94A3B8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>💻 SQL Queries Documentation</h1>
+
+<p>QORESTO Restaurant Analytics Platform</p>
+
+</div>
+
+<div class="query-card">
+
+<h2>SQL Queries Used In Project</h2>
+
+<table>
+
+<tr>
+    <th>Feature</th>
+    <th>Description</th>
+</tr>
+
+<tr>
+    <td>Top Restaurants</td>
+    <td>Find restaurants with highest orders</td>
+</tr>
+
+<tr>
+    <td>Total Revenue</td>
+    <td>Calculate overall revenue</td>
+</tr>
+
+<tr>
+    <td>Order Status Analysis</td>
+    <td>Track order lifecycle</td>
+</tr>
+
+<tr>
+    <td>Top Customers</td>
+    <td>Identify frequent customers</td>
+</tr>
+
+<tr>
+    <td>Monthly Revenue</td>
+    <td>Revenue trend analytics</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="query-card">
+
+<h2>🏆 Top Restaurants</h2>
+
+<pre>
+SELECT r.restaurant_name,
+COUNT(o.order_id) AS total_orders
+FROM restaurants r
+LEFT JOIN orders o
+ON r.restaurant_id = o.restaurant_id
+GROUP BY r.restaurant_id
+ORDER BY total_orders DESC;
+</pre>
+
+</div>
+
+<div class="query-card">
+
+<h2>💰 Total Revenue</h2>
+
+<pre>
+SELECT SUM(amount) AS total_revenue
+FROM payments;
+</pre>
+
+</div>
+
+<div class="query-card">
+
+<h2>📦 Order Status Analysis</h2>
+
+<pre>
+SELECT order_status,
+COUNT(*) AS total_orders
+FROM orders
+GROUP BY order_status;
+</pre>
+
+</div>
+
+<div class="query-card">
+
+<h2>👤 Top Customers</h2>
+
+<pre>
+SELECT u.name,
+COUNT(o.order_id) AS total_orders
+FROM users u
+JOIN orders o
+ON u.user_id = o.user_id
+GROUP BY u.user_id
+ORDER BY total_orders DESC;
+</pre>
+
+</div>
+
+<div class="query-card">
+
+<h2>📈 Monthly Revenue Trend</h2>
+
+<pre>
+SELECT DATE(payment_date) AS day,
+SUM(amount) AS revenue
+FROM payments
+GROUP BY DATE(payment_date)
+ORDER BY day;
+</pre>
+
+</div>
+
+<div class="query-card">
+
+<h2>⭐ Average Restaurant Ratings</h2>
+
+<pre>
+SELECT r.restaurant_name,
+AVG(rv.rating) AS average_rating
+FROM restaurants r
+JOIN reviews rv
+ON r.restaurant_id = rv.restaurant_id
+GROUP BY r.restaurant_id;
+</pre>
+
+</div>
+
+<div class="btn-section">
+
+<a href="/documentation" class="btn">
+📚 Project Documentation
+</a>
+
+<a href="/analytics" class="btn">
+📊 Analytics Dashboard
+</a>
+
+<a href="/admin_dashboard" class="btn">
+🏠 Admin Dashboard
+</a>
+
+</div>
+
+<div class="footer">
+
+© 2026 QORESTO Analytics Platform
+
+</div>
+
+</body>
+</html>
+

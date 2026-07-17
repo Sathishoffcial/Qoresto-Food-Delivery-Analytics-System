@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>QORESTO | Payments Dashboard</title>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#050B16;
+
+    color:white;
+
+    font-family:'Segoe UI',sans-serif;
+
+    min-height:100vh;
+}
+
+.header{
+
+    text-align:center;
+
+    padding:40px;
+
+    background:#08111f;
+
+    border-bottom:
+    1px solid rgba(77,223,255,.15);
+}
+
+.header h1{
+
+    color:#4ddfff;
+
+    font-size:42px;
+}
+
+.header p{
+
+    color:#94A3B8;
+
+    margin-top:10px;
+}
+
+.container{
+
+    padding:40px;
+}
+
+.kpi-card{
+
+    width:350px;
+
+    margin:0 auto 40px;
+
+    text-align:center;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border:
+    1px solid rgba(77,223,255,.15);
+
+    box-shadow:
+    0 0 25px rgba(77,223,255,.08);
+}
+
+.kpi-card i{
+
+    font-size:45px;
+
+    color:#4ddfff;
+
+    margin-bottom:15px;
+}
+
+.kpi-card h2{
+
+    color:#cbd5e1;
+
+    margin-bottom:10px;
+}
+
+.kpi-card h1{
+
+    color:#4ddfff;
+
+    font-size:42px;
+}
+
+.table-card{
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    border:
+    1px solid rgba(77,223,255,.15);
+
+    box-shadow:
+    0 0 25px rgba(77,223,255,.08);
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#4ddfff;
+
+    color:black;
+
+    padding:16px;
+}
+
+td{
+
+    padding:15px;
+
+    text-align:center;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.08);
+
+    color:#e2e8f0;
+}
+
+tr:hover{
+
+    background:
+    rgba(77,223,255,.08);
+}
+
+.amount{
+
+    color:#00e676;
+
+    font-weight:700;
+}
+
+.payment-badge{
+
+    background:
+    rgba(77,223,255,.15);
+
+    color:#4ddfff;
+
+    padding:6px 12px;
+
+    border-radius:30px;
+
+    font-weight:600;
+}
+
+.actions{
+
+    text-align:center;
+
+    margin-top:35px;
+}
+
+.btn{
+
+    display:inline-block;
+
+    padding:14px 28px;
+
+    background:#4ddfff;
+
+    color:black;
+
+    text-decoration:none;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.btn:hover{
+
+    background:white;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.3);
+}
+
+.empty{
+
+    text-align:center;
+
+    padding:50px;
+
+    color:#94A3B8;
+
+    font-size:20px;
+}
+
+.footer{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#94A3B8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>💳 Payments Dashboard</h1>
+
+<p>
+Monitor transactions, payment methods
+and total revenue.
+</p>
+
+</div>
+
+<div class="container">
+
+<div class="kpi-card">
+
+<i class="fa-solid fa-indian-rupee-sign"></i>
+
+<h2>Total Revenue</h2>
+
+<h1>₹{{ revenue or 0 }}</h1>
+
+</div>
+
+{% if payments %}
+
+<div class="table-card">
+
+<table>
+
+<tr>
+    <th>Payment ID</th>
+    <th>Order ID</th>
+    <th>Payment Method</th>
+    <th>Amount</th>
+</tr>
+
+{% for payment in payments %}
+
+<tr>
+
+    <td>
+        {{ payment.payment_id }}
+    </td>
+
+    <td>
+        {{ payment.order_id }}
+    </td>
+
+    <td>
+        <span class="payment-badge">
+            {{ payment.payment_method }}
+        </span>
+    </td>
+
+    <td class="amount">
+        ₹{{ payment.amount }}
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% else %}
+
+<div class="empty">
+
+No Payment Records Found
+
+</div>
+
+{% endif %}
+
+<div class="actions">
+
+<a href="/admin_dashboard"
+   class="btn">
+
+📊 Back To Admin Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+© 2026 QORESTO Financial Analytics
+
+</div>
+
+</body>
+</html>
+

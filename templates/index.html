@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Qoresto | Smart Restaurant Management Platform</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}">
+
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+
+<div class="logo">
+    <h2>Qoresto</h2>
+</div>
+
+<div class="nav-links">
+    <a href="/home">Home</a>
+    <a href="/restaurants">Restaurants</a>
+    <a href="/my-orders">My Orders</a>
+    <a href="/cart">Cart</a>
+    <a href="/favorites">Favorites</a>
+    <a href="/profile">Profile</a>
+    <a href="/logout">Logout</a>
+</div>
+
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="floating-bg">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="hero-content">
+
+        <h1>Qoresto</h1>
+
+        <h3>
+            Smart Restaurant Management & Food Ordering Platform
+        </h3>
+
+        <p>
+            Manage Restaurants, Orders, Customers,
+            Analytics, Revenue and Growth
+            in one intelligent platform.
+        </p>
+
+        <div class="hero-buttons">
+            <div class="hero-stats">
+
+    <div class="hero-stat">
+        <h2>1200+</h2>
+        <span>Restaurants</span>
+    </div>
+
+    <div class="hero-stat">
+        <h2>50K+</h2>
+        <span>Orders</span>
+    </div>
+
+    <div class="hero-stat">
+        <h2>4.9★</h2>
+        <span>Rating</span>
+    </div>
+
+</div>
+
+            <a href="/restaurants">
+                <button>
+                    Explore Restaurants
+                </button>
+            </a>
+
+            <a href="/dashboard">
+                <button class="secondary-btn">
+                    View Dashboard
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+<section class="live-metrics">
+
+    <div class="metric">
+        <h2>50K+</h2>
+        <p>Orders Delivered</p>
+    </div>
+
+    <div class="metric">
+        <h2>1,200+</h2>
+        <p>Restaurants</p>
+    </div>
+
+    <div class="metric">
+        <h2>99.9%</h2>
+        <p>System Uptime</p>
+    </div>
+
+    <div class="metric">
+        <h2>4.9★</h2>
+        <p>Customer Rating</p>
+    </div>
+
+</section>
+
+<!-- WELCOME -->
+
+<section class="welcome-section">
+
+
+<h2>
+    Welcome,
+    {{ session.get('name', 'Guest') }}
+</h2>
+
+
+</section>
+
+<!-- SEARCH -->
+
+<section class="search-section">
+
+
+<form action="/search" method="GET">
+
+    <input
+        type="text"
+        name="keyword"
+        placeholder="Search Restaurants">
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+
+</section>
+
+
+
+
+
+<!-- MAIN STATS -->
+
+<section class="stats-section glass-section">
+
+
+<div class="stat-card">
+    <h2>100+</h2>
+    <p>Restaurants</p>
+</div>
+
+<div class="stat-card">
+    <h2>10,000+</h2>
+    <p>Orders</p>
+</div>
+
+<div class="stat-card">
+    <h2>5,000+</h2>
+    <p>Customers</p>
+</div>
+
+<div class="stat-card">
+    <h2>₹50L+</h2>
+    <p>Revenue Processed</p>
+</div>
+
+
+</section>
+
+<!-- CATEGORIES -->
+
+<section class="categories">
+
+
+<h2>Popular Categories</h2>
+
+<div class="category-grid">
+
+    <div class="category-card">
+    <span>🍕</span>
+    <h3>Pizza</h3>
+</div>
+    <div class="category-card">
+        <span>🍔</span>
+        <h3>Burgers</h3>
+    </div>
+    <div class="category-card">
+        <span>🍛</span>
+        <h3>Biryani</h3>
+    </div>
+    <div class="category-card">
+        <span>🍜</span>
+        <h3>Chinese</h3>
+    </div>
+    <div class="category-card">
+        <span>🥤</span>
+        <h3>Drinks </h3>
+    </div>
+    <div class="category-card"><span>🍰</span>
+        <h3>Desserts</h3>
+    </div>
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- QUICK ACCESS -->
+
+<section class="quick-links">
+
+
+<h2>Quick Access</h2>
+
+<div class="buttons">
+
+    <a href="/dashboard"><button>Dashboard</button></a>
+    <a href="/analytics"><button>Analytics</button></a>
+    <a href="/orders"><button>Orders</button></a>
+    <a href="/payments"><button>Payments</button></a>
+    <a href="/reviews"><button>Reviews</button></a>
+    <a href="/users"><button>Users</button></a>
+    <a href="/export_orders_excel"><button>Export Excel</button></a>
+    <a href="/export_pdf"><button>Export PDF</button></a>
+
+</div>
+
+
+</section>
+
+<!-- PROJECT RESOURCES -->
+
+<section class="quick-links">
+
+
+<h2>Project Resources</h2>
+
+<div class="buttons">
+
+    <a href="/about_project">
+        <button>About Project</button>
+    </a>
+
+    <a href="/sql_queries">
+        <button>SQL Queries</button>
+    </a>
+
+    <a href="/reports">
+        <button>Reports</button>
+    </a>
+
+</div>
+
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-logo">
+        <h2>QORESTO</h2>
+    </div>
+
+    <p>
+        Smart Restaurant Management &
+        Analytics Platform
+    </p>
+
+    <div class="footer-links">
+
+        <a href="/home">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/analytics">Analytics</a>
+        <a href="/profile">Profile</a>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 QORESTO | Premium Analytics Platform
+    </div>
+
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script>
+
+document.querySelectorAll(
+'.feature-card,.restaurant-card,.stat-card'
+).forEach(card=>{
+
+card.addEventListener('mousemove',e=>{
+
+const rect=
+card.getBoundingClientRect();
+
+const x=
+e.clientX-rect.left;
+
+const y=
+e.clientY-rect.top;
+
+const rotateY=
+((x/rect.width)-0.5)*20;
+
+const rotateX=
+((y/rect.height)-0.5)*-20;
+
+card.style.transform=
+`perspective(1000px)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)
+translateY(-10px)`;
+
+});
+
+card.addEventListener('mouseleave',()=>{
+
+card.style.transform='';
+
+});
+
+});
+
+</script>
+</body>
+</html>

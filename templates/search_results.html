@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QORESTO | Search Results</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#050B16;
+    color:white;
+    min-height:100vh;
+}
+
+/* Header */
+
+.header{
+    text-align:center;
+    padding:40px 20px;
+}
+
+.header h1{
+    color:#4ddfff;
+    font-size:45px;
+    text-shadow:0 0 20px rgba(77,223,255,.4);
+}
+
+.header p{
+    color:#94A3B8;
+    margin-top:10px;
+}
+
+/* Search Info */
+
+.search-info{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    margin-bottom:25px;
+
+    background:#0F172A;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    text-align:center;
+}
+
+.search-info span{
+    color:#4ddfff;
+    font-weight:bold;
+}
+
+/* Restaurant Grid */
+
+.results-container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+    padding:20px;
+}
+
+/* Restaurant Card */
+
+.restaurant-card{
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    transition:.3s;
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.08);
+}
+
+.restaurant-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#4ddfff;
+
+    box-shadow:
+    0 0 25px rgba(77,223,255,.25);
+}
+
+.restaurant-card h3{
+
+    color:#4ddfff;
+
+    margin-bottom:15px;
+
+    font-size:24px;
+}
+
+.restaurant-card p{
+
+    color:#d1d5db;
+
+    margin-bottom:20px;
+
+    line-height:1.6;
+}
+
+/* Buttons */
+
+.btn{
+
+    display:inline-block;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.view-btn{
+
+    background:
+    linear-gradient(
+    135deg,
+    #4ddfff,
+    #00d4ff);
+
+    color:black;
+}
+
+.view-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 15px rgba(77,223,255,.35);
+}
+
+/* Back Button */
+
+.back-section{
+    text-align:center;
+    margin:40px;
+}
+
+.back-btn{
+
+    background:#111827;
+
+    color:#4ddfff;
+
+    border:1px solid rgba(77,223,255,.2);
+
+    padding:14px 25px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+}
+
+.back-btn:hover{
+    background:#162033;
+}
+
+/* No Results */
+
+.no-results{
+
+    max-width:700px;
+
+    margin:60px auto;
+
+    text-align:center;
+
+    background:#0F172A;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(77,223,255,.15);
+}
+
+.no-results h2{
+    color:#4ddfff;
+}
+
+.footer{
+    text-align:center;
+    padding:30px;
+    color:#94A3B8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+    <h1>🔍 Search Results</h1>
+
+    <p>Find Your Favorite Restaurants</p>
+
+</div>
+
+<div class="search-info">
+
+    Search Keyword:
+    <span>{{ keyword }}</span>
+
+</div>
+
+{% if restaurants %}
+
+<div class="results-container">
+
+{% for restaurant in restaurants %}
+
+<div class="restaurant-card">
+
+    <h3>{{ restaurant.restaurant_name }}</h3>
+
+    <p>
+        📍 {{ restaurant.address }}
+    </p>
+
+    <a href="/restaurant/{{ restaurant.restaurant_id }}"
+       class="btn view-btn">
+
+        View Details
+
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="no-results">
+
+    <h2>No Restaurants Found</h2>
+
+    <p>
+        Try searching with another keyword.
+    </p>
+
+</div>
+
+{% endif %}
+
+<div class="back-section">
+
+    <a href="/home" class="back-btn">
+        ← Back Home
+    </a>
+
+</div>
+
+<div class="footer">
+    © 2026 QORESTO Analytics Platform
+</div>
+
+</body>
+</html>
+

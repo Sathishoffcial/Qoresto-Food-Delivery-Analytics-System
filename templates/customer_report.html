@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>QORESTO | Customer Report</title>
+
+<style>
+
+body{
+    background:#050B16;
+    color:white;
+    font-family:'Segoe UI',sans-serif;
+    padding:30px;
+}
+
+.page-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.page-header h1{
+    color:#4ddfff;
+    font-size:42px;
+    text-shadow:0 0 20px rgba(77,223,255,.5);
+}
+
+.page-header p{
+    color:#94A3B8;
+}
+
+.report-card{
+
+    background:#0F172A;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.08);
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    overflow:hidden;
+}
+
+th{
+
+    background:#4ddfff;
+
+    color:black;
+
+    padding:15px;
+}
+
+td{
+
+    padding:15px;
+
+    text-align:center;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.08);
+}
+
+tr:hover{
+    background:#111827;
+}
+
+.total{
+
+    margin-top:25px;
+
+    text-align:right;
+
+    color:#4ddfff;
+
+    font-size:20px;
+
+    font-weight:bold;
+}
+
+.btn{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    background:#4ddfff;
+
+    color:black;
+
+    text-decoration:none;
+
+    padding:12px 25px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+}
+
+.btn:hover{
+
+    background:white;
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.4);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page-header">
+
+<h1>👥 Customer Report</h1>
+
+<p>
+Customer Order Analytics & Spending Insights
+</p>
+
+</div>
+
+<div class="report-card">
+
+<table>
+
+<tr>
+    <th>Customer Name</th>
+    <th>Total Orders</th>
+    <th>Total Spent</th>
+</tr>
+
+{% for customer in customers %}
+
+<tr>
+    <td>{{ customer.name }}</td>
+    <td>{{ customer.total_orders }}</td>
+    <td>₹{{ customer.total_spent }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<a href="/admin_dashboard" class="btn">
+    ← Back Dashboard
+</a>
+
+</div>
+
+</body>
+</html>

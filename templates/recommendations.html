@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QORESTO | Top Restaurants</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#050B16;
+    color:white;
+    min-height:100vh;
+    padding:40px;
+}
+
+/* HEADER */
+
+.header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.header h1{
+    color:#4ddfff;
+    font-size:45px;
+    text-shadow:0 0 20px rgba(77,223,255,.4);
+}
+
+.header p{
+    color:#94A3B8;
+    margin-top:10px;
+}
+
+/* TABLE CARD */
+
+.table-card{
+
+    max-width:1000px;
+
+    margin:auto;
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    border:1px solid rgba(77,223,255,.18);
+
+    box-shadow:
+    0 0 30px rgba(77,223,255,.12);
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    overflow:hidden;
+}
+
+th{
+
+    background:#4ddfff;
+
+    color:black;
+
+    padding:18px;
+
+    font-size:16px;
+}
+
+td{
+
+    padding:18px;
+
+    text-align:center;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+tr:hover{
+
+    background:#162033;
+}
+
+/* Rank Badge */
+
+.rank{
+
+    width:40px;
+    height:40px;
+
+    margin:auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#4ddfff;
+
+    color:black;
+
+    font-weight:bold;
+}
+
+/* Buttons */
+
+.btn-section{
+
+    text-align:center;
+
+    margin-top:30px;
+}
+
+.btn{
+
+    display:inline-block;
+
+    padding:14px 25px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #4ddfff,
+    #00d4ff);
+
+    color:black;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    border-radius:12px;
+
+    transition:.3s;
+
+    margin:10px;
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.35);
+}
+
+/* Footer */
+
+.footer{
+
+    text-align:center;
+
+    margin-top:30px;
+
+    color:#94A3B8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+    <h1>🏆 Top Restaurants</h1>
+
+    <p>
+        Best Performing Restaurants Based On Total Orders
+    </p>
+
+</div>
+
+<div class="table-card">
+
+<table>
+
+<tr>
+    <th>Rank</th>
+    <th>Restaurant Name</th>
+    <th>Total Orders</th>
+</tr>
+
+{% for r in restaurants %}
+
+<tr>
+
+    <td>
+        <div class="rank">
+            {{ loop.index }}
+        </div>
+    </td>
+
+    <td>{{ r.restaurant_name }}</td>
+
+    <td>{{ r.total_orders }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<div class="btn-section">
+
+    <a href="/analytics" class="btn">
+        📊 Analytics Dashboard
+    </a>
+
+    <a href="/admin_dashboard" class="btn">
+        🏠 Admin Dashboard
+    </a>
+
+</div>
+
+</div>
+
+<div class="footer">
+    © 2026 QORESTO Analytics Platform
+</div>
+
+</body>
+</html>
+

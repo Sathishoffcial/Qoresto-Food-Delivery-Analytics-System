@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Orders</title>
+
+    <style>
+
+body{
+    background:#050B16;
+    color:white;
+    font-family:'Segoe UI',sans-serif;
+    margin:0;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    color:#4ddfff;
+    font-size:42px;
+    margin-bottom:30px;
+}
+
+/* Search Section */
+
+.search-form{
+
+    background:#0f172a;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(77,223,255,.2);
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:30px;
+}
+
+input,
+select{
+
+    padding:12px;
+
+    border-radius:10px;
+
+    border:1px solid rgba(77,223,255,.2);
+
+    background:#111827;
+
+    color:white;
+
+    min-width:220px;
+}
+
+button{
+
+    background:#4ddfff;
+
+    color:black;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:12px 20px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+/* Orders Table */
+
+.table-container{
+
+    background:#0f172a;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    overflow-x:auto;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#4ddfff;
+
+    color:black;
+
+    padding:15px;
+}
+
+td{
+
+    padding:15px;
+
+    text-align:center;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+tr:hover{
+    background:#162033;
+}
+
+/* Action Buttons */
+
+.action-btn{
+
+    display:inline-block;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    margin:2px;
+
+    transition:.3s;
+}
+
+.track{
+    background:#2196F3;
+    color:white;
+}
+
+.rate{
+    background:#FFD54F;
+    color:black;
+}
+
+.invoice{
+    background:#00BCD4;
+    color:white;
+}
+
+.delete{
+    background:#ff5252;
+    color:white;
+}
+
+.action-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* Back Button */
+
+.btn{
+
+    display:inline-block;
+
+    margin-top:30px;
+
+    padding:14px 25px;
+
+    border-radius:10px;
+
+    background:#4ddfff;
+
+    color:black;
+
+    text-decoration:none;
+
+    font-weight:700;
+}
+
+.btn:hover{
+    background:white;
+}
+
+/* Search Order Box */
+
+#searchInput{
+
+    margin-top:20px;
+
+    width:300px;
+
+    padding:12px;
+}
+
+/* Status Colors */
+
+.status-delivered{
+    color:#00ff88;
+    font-weight:600;
+}
+
+.status-pending{
+    color:#FFD54F;
+    font-weight:600;
+}
+
+.status-cancelled{
+    color:#ff5252;
+    font-weight:600;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Orders List</h1>
+
+<form method="GET" action="/orders" class="search-form">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search Customer Name"
+        value="{{ request.args.get('search','') }}">
+
+    <select name="status">
+
+        <option value="">All Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Confirmed">Confirmed</option>
+        <option value="Preparing Food">Preparing Food</option>
+        <option value="Out for Delivery">Out for Delivery</option>
+        <option value="Delivered">Delivered</option>
+
+    </select>
+
+    <button type="submit">
+        Search / Filter
+    </button>
+
+</form>
+
+<table>
+
+<tr>
+    <th>Order ID</th>
+    <th>User</th>
+    <th>Restaurant</th>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Actions</th>
+</tr>
+
+{% for order in orders %}
+
+<tr>
+
+    <td>{{ order.order_id }}</td>
+
+    <td>{{ order.name }}</td>
+
+    <td>{{ order.restaurant_name }}</td>
+
+    <td>{{ order.order_date }}</td>
+
+    <td>{{ order.order_status }}</td>
+
+    <td>
+
+        <a href="/track_order/{{ order.order_id }}"
+           class="action-btn track">
+            Track
+        </a>
+
+        <a href="/rate_order/{{ order.order_id }}"
+           class="action-btn rate">
+            Rate
+        </a>
+
+        <a href="/invoice/{{ order.order_id }}"
+           class="action-btn invoice">
+            Invoice
+        </a>
+
+        <a href="/delete_order/{{ order.order_id }}"
+           class="action-btn delete"
+           onclick="return confirm('Delete this order?')">
+            Delete
+        </a>
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<div style="text-align:center">
+
+<a href="/home" class="btn">
+    ← Back Home
+</a>
+
+<br><br>
+
+<input
+    type="text"
+    id="searchInput"
+    placeholder="🔍 Search Order">
+
+</div>
+
+</body>
+</html>

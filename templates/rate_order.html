@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QORESTO | Rate Order</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #050B16,
+    #08111f,
+    #0F172A);
+
+    overflow:hidden;
+}
+
+/* Background Glow */
+
+body::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(77,223,255,.08);
+    border-radius:50%;
+    top:-150px;
+    left:-150px;
+    filter:blur(120px);
+}
+
+body::after{
+    content:'';
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:rgba(77,223,255,.08);
+    border-radius:50%;
+    bottom:-150px;
+    right:-150px;
+    filter:blur(120px);
+}
+
+/* Review Card */
+
+.review-card{
+
+    position:relative;
+    z-index:2;
+
+    width:600px;
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    border:1px solid rgba(77,223,255,.18);
+
+    box-shadow:
+    0 0 35px rgba(77,223,255,.15);
+}
+
+.review-card h2{
+
+    text-align:center;
+
+    color:#4ddfff;
+
+    font-size:36px;
+
+    margin-bottom:30px;
+}
+
+/* Labels */
+
+label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    color:#d8f7ff;
+
+    font-weight:600;
+}
+
+/* Inputs */
+
+select,
+textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(77,223,255,.2);
+
+    background:#111827;
+
+    color:white;
+
+    font-size:15px;
+
+    margin-bottom:25px;
+}
+
+select:focus,
+textarea:focus{
+
+    outline:none;
+
+    border-color:#4ddfff;
+
+    box-shadow:
+    0 0 15px rgba(77,223,255,.3);
+}
+
+textarea{
+    resize:none;
+}
+
+/* Button */
+
+.submit-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #4ddfff,
+    #00d4ff);
+
+    color:black;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.submit-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.4);
+}
+
+/* Back Button */
+
+.back-btn{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:20px;
+
+    padding:14px;
+
+    background:#111827;
+
+    border:1px solid rgba(77,223,255,.2);
+
+    border-radius:12px;
+
+    color:#4ddfff;
+
+    text-decoration:none;
+
+    font-weight:600;
+}
+
+.back-btn:hover{
+    background:#162033;
+}
+
+/* Footer */
+
+.footer{
+
+    text-align:center;
+
+    margin-top:20px;
+
+    color:#94A3B8;
+
+    font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="review-card">
+
+<h2>⭐ Rate Your Order</h2>
+
+<form method="POST">
+
+    <label>Select Rating</label>
+
+    <select name="rating">
+
+        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+        <option value="4">⭐⭐⭐⭐ Very Good</option>
+        <option value="3">⭐⭐⭐ Good</option>
+        <option value="2">⭐⭐ Fair</option>
+        <option value="1">⭐ Poor</option>
+
+    </select>
+
+    <label>Feedback</label>
+
+    <textarea
+        name="feedback"
+        rows="6"
+        placeholder="Tell us about your dining experience..."></textarea>
+
+    <button
+        type="submit"
+        class="submit-btn">
+
+        Submit Review
+
+    </button>
+
+</form>
+
+<a href="/my-orders"
+   class="back-btn">
+
+   ← Back To Orders
+
+</a>
+
+<div class="footer">
+    © 2026 QORESTO Analytics Platform
+</div>
+
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QORESTO | Reorder</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #050B16,
+    #08111f,
+    #0F172A);
+
+    overflow:hidden;
+}
+
+/* Background Glow */
+
+body::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(77,223,255,.08);
+    border-radius:50%;
+    top:-150px;
+    left:-150px;
+    filter:blur(120px);
+}
+
+body::after{
+    content:'';
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:rgba(77,223,255,.08);
+    border-radius:50%;
+    bottom:-150px;
+    right:-150px;
+    filter:blur(120px);
+}
+
+/* Card */
+
+.reorder-card{
+
+    position:relative;
+    z-index:2;
+
+    width:650px;
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    border:1px solid rgba(77,223,255,.18);
+
+    box-shadow:
+    0 0 35px rgba(77,223,255,.15);
+
+    text-align:center;
+}
+
+.icon{
+
+    width:100px;
+    height:100px;
+
+    margin:auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+    135deg,
+    #4ddfff,
+    #00d4ff);
+
+    color:black;
+
+    font-size:45px;
+
+    margin-bottom:25px;
+}
+
+h1{
+
+    color:#4ddfff;
+
+    margin-bottom:20px;
+
+    font-size:38px;
+}
+
+.subtitle{
+
+    color:#cbd5e1;
+
+    margin-bottom:30px;
+}
+
+/* Order Details */
+
+.order-box{
+
+    background:#0b1220;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:30px;
+
+    text-align:left;
+}
+
+.order-box h3{
+
+    color:#4ddfff;
+
+    margin-bottom:15px;
+}
+
+.order-box p{
+
+    color:white;
+
+    line-height:1.8;
+}
+
+/* Buttons */
+
+.btn-group{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.btn{
+
+    padding:14px 25px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.primary{
+
+    background:
+    linear-gradient(
+    135deg,
+    #4ddfff,
+    #00d4ff);
+
+    color:black;
+}
+
+.secondary{
+
+    background:#111827;
+
+    color:#4ddfff;
+
+    border:1px solid rgba(77,223,255,.2);
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.35);
+}
+
+.footer{
+
+    margin-top:25px;
+
+    color:#94A3B8;
+
+    font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="reorder-card">
+
+<div class="icon">
+    <i class="fa-solid fa-rotate-right"></i>
+</div>
+
+<h1>Reorder Previous Meal</h1>
+
+<p class="subtitle">
+    Quickly order your favorite meal again
+</p>
+
+<div class="order-box">
+
+    <h3>Previous Order Items</h3>
+
+    <p>{{ items }}</p>
+
+</div>
+
+<div class="btn-group">
+
+    <a href="/menu" class="btn primary">
+        🍽 Order Again
+    </a>
+
+    <a href="/my-orders" class="btn secondary">
+        📦 My Orders
+    </a>
+
+    <a href="/home" class="btn secondary">
+        🏠 Home
+    </a>
+
+</div>
+
+<div class="footer">
+    © 2026 QORESTO Analytics Platform
+</div>
+
+</div>
+
+</body>
+</html>
+

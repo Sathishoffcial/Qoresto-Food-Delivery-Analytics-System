@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu Items</title>
+    <a href="/cart" class="btn">
+    View Cart
+</a>
+<style>
+
+body{
+    background:#050B16;
+    color:white;
+    font-family:'Segoe UI',sans-serif;
+    margin:0;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    color:#4ddfff;
+    font-size:42px;
+    margin-bottom:30px;
+}
+
+/* Search Area */
+
+.search-box{
+
+    background:#0f172a;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(77,223,255,.2);
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:30px;
+}
+
+input,
+select{
+
+    padding:12px;
+
+    border-radius:10px;
+
+    border:1px solid rgba(77,223,255,.2);
+
+    background:#111827;
+
+    color:white;
+
+    min-width:220px;
+}
+
+button{
+
+    background:#4ddfff;
+
+    color:black;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:12px 20px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+/* Cart Button */
+
+.cart-top{
+    text-align:right;
+    margin-bottom:20px;
+}
+
+.cart-btn{
+
+    background:#00e676;
+
+    color:black;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+}
+
+/* Table */
+
+.table-container{
+
+    background:#0f172a;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#4ddfff;
+
+    color:black;
+
+    padding:15px;
+}
+
+td{
+
+    padding:15px;
+
+    text-align:center;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+tr:hover{
+    background:#162033;
+}
+
+/* Buttons */
+
+.btn{
+
+    display:inline-block;
+
+    padding:10px 16px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-weight:600;
+}
+
+.add-cart{
+
+    background:#00e676;
+
+    color:black;
+}
+
+.back-btn{
+
+    background:#4ddfff;
+
+    color:black;
+
+    margin-top:25px;
+}
+
+.bottom{
+    text-align:center;
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+
+<div class="cart-top">
+    <a href="/cart" class="cart-btn">
+        🛒 View Cart
+    </a>
+</div>
+
+<h1>🍽️ Menu Items</h1>
+
+<form method="GET" action="/menu" class="search-box">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search Food Item"
+        value="{{ search }}">
+
+    <select name="category">
+
+        <option value="">All Categories</option>
+
+        {% for cat in categories %}
+        <option value="{{ cat.category_name }}">
+            {{ cat.category_name }}
+        </option>
+        {% endfor %}
+
+    </select>
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+<div class="table-container">
+
+<table>
+
+<tr>
+    <th>ID</th>
+    <th>Item Name</th>
+    <th>Category</th>
+    <th>Restaurant</th>
+    <th>Price</th>
+    <th>Action</th>
+</tr>
+
+{% for item in items %}
+
+<tr>
+
+    <td>{{ item.item_id }}</td>
+
+    <td>{{ item.item_name }}</td>
+
+    <td>{{ item.category_name }}</td>
+
+    <td>{{ item.restaurant_name }}</td>
+
+    <td>₹{{ item.price }}</td>
+
+    <td>
+        <a href="/add_to_cart/{{ item.item_id }}"
+           class="btn add-cart">
+            Add To Cart
+        </a>
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+<div class="bottom">
+
+    <a href="/home"
+       class="btn back-btn">
+        ← Back Home
+    </a>
+
+</div>
+
+
+
+</body>
+</html>

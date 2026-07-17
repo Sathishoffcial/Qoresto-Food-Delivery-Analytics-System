@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QORESTO | Edit Profile</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #050B16,
+        #08131F,
+        #0B1725,
+        #06101C
+    );
+
+    overflow:hidden;
+
+    color:white;
+}
+
+/* Background Glow */
+
+body::before{
+
+    content:'';
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    background:
+    rgba(77,223,255,.08);
+
+    border-radius:50%;
+
+    top:-150px;
+    right:-150px;
+
+    filter:blur(120px);
+}
+
+body::after{
+
+    content:'';
+
+    position:fixed;
+
+    width:400px;
+    height:400px;
+
+    background:
+    rgba(77,223,255,.05);
+
+    border-radius:50%;
+
+    bottom:-120px;
+    left:-120px;
+
+    filter:blur(120px);
+}
+
+/* Main Card */
+
+.card{
+
+    width:100%;
+    max-width:550px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(77,223,255,.2);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    box-shadow:
+    0 0 30px rgba(77,223,255,.15);
+
+    transition:.4s;
+
+    z-index:10;
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 0 45px rgba(77,223,255,.3);
+}
+
+/* Heading */
+
+h2{
+
+    text-align:center;
+
+    color:#4ddfff;
+
+    font-size:34px;
+
+    margin-bottom:25px;
+
+    text-shadow:
+    0 0 20px rgba(77,223,255,.5);
+}
+
+/* Avatar */
+
+.profile-avatar{
+
+    text-align:center;
+
+    margin-bottom:25px;
+}
+
+.profile-avatar img{
+
+    width:100px;
+    height:100px;
+
+    border-radius:50%;
+
+    border:3px solid #4ddfff;
+
+    padding:5px;
+
+    background:white;
+}
+
+.profile-avatar h3{
+
+    margin-top:12px;
+
+    color:#4ddfff;
+
+    font-size:22px;
+}
+
+/* Form Inputs */
+
+input,
+textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-bottom:18px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(77,223,255,.2);
+
+    background:
+    rgba(255,255,255,.05);
+
+    color:white;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.3s;
+}
+
+input:focus,
+textarea:focus{
+
+    border-color:#4ddfff;
+
+    box-shadow:
+    0 0 15px rgba(77,223,255,.3);
+}
+
+textarea{
+
+    height:120px;
+
+    resize:none;
+}
+
+input::placeholder,
+textarea::placeholder{
+
+    color:#b9d7e5;
+}
+
+/* Update Button */
+
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+        45deg,
+        #4ddfff,
+        #00C8FF
+    );
+
+    color:black;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.5);
+}
+
+/* Back Button */
+
+.back-btn{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:18px;
+
+    color:#4ddfff;
+
+    text-decoration:none;
+
+    font-weight:600;
+}
+
+.back-btn:hover{
+
+    text-decoration:underline;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h2>👤 Edit Profile</h2>
+
+    <div class="profile-avatar">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+
+        <h3>{{ user.name }}</h3>
+
+    </div>
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="name"
+            value="{{ user.name }}"
+            placeholder="Full Name"
+            required>
+
+        <input
+            type="text"
+            name="phone"
+            value="{{ user.phone }}"
+            placeholder="Phone Number"
+            required>
+
+        <textarea
+            name="address"
+            placeholder="Address">{{ user.address }}</textarea>
+
+        <button type="submit">
+            Update Profile
+        </button>
+
+    </form>
+
+    <a href="/profile" class="back-btn">
+        ← Back to Profile
+    </a>
+
+</div>
+
+</body>
+</html>
+

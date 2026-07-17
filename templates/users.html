@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QORESTO | Users Management</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#050B16;
+    color:white;
+    min-height:100vh;
+    padding:40px;
+}
+
+/* Header */
+
+.header{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.header h1{
+    color:#4ddfff;
+    font-size:45px;
+    text-shadow:0 0 20px rgba(77,223,255,.4);
+}
+
+.header p{
+    color:#94A3B8;
+    margin-top:10px;
+}
+
+/* Card */
+
+.table-card{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    background:
+    linear-gradient(
+    145deg,
+    #0F172A,
+    #111827);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    border:1px solid rgba(77,223,255,.18);
+
+    box-shadow:
+    0 0 25px rgba(77,223,255,.12);
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#4ddfff;
+
+    color:black;
+
+    padding:18px;
+
+    font-size:15px;
+}
+
+td{
+
+    padding:18px;
+
+    text-align:center;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+tr:hover{
+    background:#162033;
+}
+
+/* User Icon */
+
+.user-icon{
+    color:#4ddfff;
+    font-size:18px;
+}
+
+/* Buttons */
+
+.btn-section{
+    text-align:center;
+    margin-top:30px;
+}
+
+.btn{
+
+    display:inline-block;
+
+    padding:14px 25px;
+
+    margin:10px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+    background:
+    linear-gradient(
+    135deg,
+    #4ddfff,
+    #00d4ff);
+
+    color:black;
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.35);
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    margin-top:30px;
+    color:#94A3B8;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="header">
+
+    <h1>👥 Users Management</h1>
+
+    <p>Registered Users in QORESTO Platform</p>
+
+</div>
+
+<div class="table-card">
+
+<table>
+
+<tr>
+    <th>User ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+</tr>
+
+{% for user in users %}
+
+<tr>
+
+    <td>{{ user.user_id }}</td>
+
+    <td>
+        <i class="fa-solid fa-user user-icon"></i>
+        {{ user.name }}
+    </td>
+
+    <td>{{ user.email }}</td>
+
+    <td>{{ user.phone }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<div class="btn-section">
+
+    <a href="/admin_dashboard" class="btn">
+        🏠 Admin Dashboard
+    </a>
+
+    <a href="/analytics" class="btn">
+        📊 Analytics Dashboard
+    </a>
+
+    <a href="/home" class="btn">
+        ← Back Home
+    </a>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 QORESTO Analytics Platform
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Qoresto Analytics Platform</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050B16;
+    color:white;
+    font-family:'Segoe UI',sans-serif;
+    padding:30px;
+}
+
+/* HEADER */
+
+.page-header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.page-header h1{
+    color:#4ddfff;
+    font-size:48px;
+    text-shadow:0 0 25px rgba(77,223,255,.6);
+}
+
+.page-header p{
+    color:#9ca3af;
+    margin-top:10px;
+}
+
+/* KPI CARDS */
+
+.dashboard-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    margin-bottom:40px;
+}
+
+.card{
+
+    background:#0f172a;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    text-align:center;
+
+    transition:.4s;
+
+    box-shadow:
+    0 0 15px rgba(77,223,255,.08);
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#4ddfff;
+
+    box-shadow:
+    0 0 30px rgba(77,223,255,.35);
+}
+
+.card h3{
+    color:#d1d5db;
+    margin-bottom:12px;
+}
+
+.card h1,
+.card h2{
+    color:#4ddfff;
+}
+
+/* CHART CONTAINERS */
+
+.chart-box{
+
+    background:#0f172a;
+
+    border-radius:20px;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    padding:25px;
+
+    margin-bottom:35px;
+
+    box-shadow:
+    0 0 15px rgba(77,223,255,.08);
+}
+
+.chart-box h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#4ddfff;
+}
+
+canvas{
+    width:100% !important;
+    height:380px !important;
+}
+
+/* TABLE */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:#0f172a;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(77,223,255,.15);
+
+    margin-bottom:30px;
+}
+
+th{
+
+    background:#4ddfff;
+
+    color:black;
+
+    padding:15px;
+}
+
+td{
+
+    padding:15px;
+
+    border-bottom:1px solid #1e293b;
+
+    text-align:center;
+}
+
+tr:hover{
+    background:#111827;
+}
+
+/* BUTTONS */
+
+.btn{
+
+    display:inline-block;
+
+    background:#4ddfff;
+
+    color:black;
+
+    padding:12px 25px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+    margin:10px;
+}
+
+.btn:hover{
+
+    background:white;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 20px rgba(77,223,255,.4);
+}
+
+/* SECTION TITLES */
+
+.section-title{
+    text-align:center;
+    color:#4ddfff;
+    margin:40px 0 20px;
+    font-size:30px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Qoresto Analytics Platform</h1>
+
+<!-- KPI CARDS -->
+<div class="dashboard-cards">
+
+    <div class="card">
+        <h3>Total Orders</h3>
+        <h1>{{ total_orders }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Total Revenue</h3>
+        <h1>₹{{ total_revenue }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Total Customers</h3>
+        <h1>{{ total_customers }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Total Restaurants</h3>
+        <h1>{{ total_restaurants }}</h1>
+    </div>
+
+</div>
+
+<hr>
+
+<h2>Orders Per Day</h2>
+<div class="chart-box">
+    <canvas id="ordersChart"></canvas>
+</div>
+
+<hr>
+
+<h2>Revenue Trend</h2>
+<div class="chart-box">
+    <canvas id="revenueChart"></canvas>
+</div>
+
+<hr>
+
+<h2>Revenue by Payment Method</h2>
+<div class="chart-box">
+    <canvas id="paymentChart"></canvas>
+</div>
+
+<hr>
+
+<h2>Order Status Distribution</h2>
+<div class="chart-box">
+    <canvas id="statusChart"></canvas>
+</div>
+
+<hr>
+
+<h2>Top 5 Restaurants</h2>
+
+<table>
+    <tr>
+        <th>Restaurant</th>
+        <th>Total Orders</th>
+    </tr>
+
+    {% for r in top_restaurants %}
+    <tr>
+        <td>{{ r.restaurant_name }}</td>
+        <td>{{ r.total_orders }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="center">
+
+    <a href="/export_orders_excel">
+        <button>Download Orders Excel</button>
+    </a>
+
+    <br><br>
+
+    <a href="/admin_dashboard">
+        <button>Back to Dashboard</button>
+    </a>
+
+</div>
+
+<script>
+
+const labels = {{ labels | tojson }};
+const values = {{ values | tojson }};
+
+new Chart(document.getElementById('ordersChart'), {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Orders Per Day',
+            data: values,
+            borderWidth: 1
+        }]
+    }
+});
+
+const statusLabels = {{ status_labels | tojson }};
+const statusValues = {{ status_values | tojson }};
+
+new Chart(document.getElementById('statusChart'), {
+    type: 'pie',
+    data: {
+        labels: statusLabels,
+        datasets: [{
+            data: statusValues
+        }]
+    }
+});
+
+new Chart(document.getElementById('paymentChart'), {
+    type: 'pie',
+    data: {
+        labels: {{ payment_labels | tojson }},
+        datasets: [{
+            data: {{ payment_values | tojson }}
+        }]
+    }
+});
+
+new Chart(document.getElementById('revenueChart'), {
+    type: 'line',
+    data: {
+        labels: {{ revenue_labels | tojson }},
+        datasets: [{
+            label: 'Revenue',
+            data: {{ revenue_values | tojson }},
+            borderWidth: 2
+        }]
+    }
+});
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
+<div class="card">
+    <h3>Average Order Value</h3>
+    <h2>₹{{ "%.2f"|format(avg_order) }}</h2>
+</div>
+<div style="text-align:center;margin-bottom:30px;">
+    <h1>QORESTO ANALYTICS CENTER</h1>
+    <p style="color:#aaa;">
+        Real-Time Revenue • Orders • Customers • Restaurant Insights
+    </p>
+</div>
+
+</body>
+</html>
