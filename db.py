@@ -1,14 +1,11 @@
+import os
 import mysql.connector
 
 def get_db_connection():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="nithish@004",
-        database="zomato_db"
+        host=os.getenv("mysql.railway.internal"),
+        user=os.getenv("root"),
+        password=os.getenv("VknGtXoySpwgSBnrwpklJLMMwIukjgxI"),
+        database=os.getenv("railway"),
+        port=int(os.getenv("3306"))
     )
-
-if __name__ == "__main__":
-    conn = get_db_connection()
-    print("Database Connected Successfully!")
-    conn.close()
