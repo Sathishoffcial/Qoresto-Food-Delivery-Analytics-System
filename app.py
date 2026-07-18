@@ -6,15 +6,24 @@ import pandas as pd
 from flask import send_file
 from openpyxl import Workbook
 from io import BytesIO
-from functools import wraps
-from flask import session, redirect
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 import sqlite3
 from functools import wraps
 
+import os
+
 app = Flask(__name__)
-app.secret_key = "food_delivery_secret_key"
+app.secret_key = os.getenv("SECRET_KEY", "food_delivery_secret_key")
+
+def get_db_connection():
+    conn = mysql.connector.connect(
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME")
+    )
+    return conn
 
 
 def login_required(f):
@@ -36,16 +45,7 @@ def admin_required(f):
 
     return decorated_function
 
-def get_db_connection():
-    conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="nithish@004",
-        database="zomato_db"
-    )
-    print("Database Connected Successfully")
 
-    return conn
 
 
 # Home Page
