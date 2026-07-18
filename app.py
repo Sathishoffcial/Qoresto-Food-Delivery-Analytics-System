@@ -12,18 +12,19 @@ import sqlite3
 from functools import wraps
 
 import os
+import mysql.connector
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
 def get_db_connection():
-    conn = mysql.connector.connect(
+    return mysql.connector.connect(
         host=os.getenv("DB_HOST"),
         user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD"),
-        database=os.getenv("DB_NAME")
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", 3306))
     )
-    return conn
 
 
 def login_required(f):
